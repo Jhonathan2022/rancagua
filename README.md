@@ -22,3 +22,4 @@ y en node_modules/ng2-charts/fesm5/ng2-charts.js
 cambiar ɵɵdefineInjectable por defineInjectable# rancagua
 # rancagua
 # rancagua
+# rancagua
