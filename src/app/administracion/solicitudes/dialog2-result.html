@@ -1,0 +1,80 @@
+<h2 mat-dialog-title> Requerimiento: {{form2.value.estado}} </h2>
+<mat-dialog-content class="mat-typography2" >
+    <div class="modal-body">
+      <form [formGroup]="form2" #formDirective="ngForm"> 
+        <div class="row" style="margin-bottom: 5% !important;margin-top: 3% !important;margin: 0;">
+          <mat-radio-group class="row"  style="text-align: left;width: 100%;" [formControl]="form2.controls['solicitud']" required>
+              <mat-radio-button disabled [style.display]="item._id == form2.value.solicitud ? 'block' : 'none'" class="col-md-4"  *ngFor="let item of tipos" [value]="item._id">{{item.nombre}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Rut</mat-label>
+              <input matInput placeholder="" readonly required autocomplete="false"[formControl]="form2.controls['rut']"type="text" >
+             
+            </mat-form-field>
+            </div>
+          <div class="col-md-4">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="" readonly [formControl]="form2.controls['nombre']" required>
+            </mat-form-field>  
+          </div> 
+          <div class="col-md-4">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input matInput placeholder="" readonly style="text-align: left;" [formControl]="form2.controls['telefono']" pattern="\d*" type="text" maxlength="9" minlength="8" required>
+              <span matPrefix>+56</span>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input matInput placeholder="" readonly [formControl]="form2.controls['direccion']"  required>
+            </mat-form-field>  
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="" readonly [formControl]="form2.controls['email']" required>
+            </mat-form-field>  
+          </div>
+          
+            <div class="col-md-12">
+              <mat-form-field class="mb-4" appearance="outline">
+                <mat-label>Requerimiento</mat-label>
+                  <textarea matInput rows="5" readonly placeholder=""  style="width: 100%;"  [formControl]="form2.controls['requerimiento']" required></textarea>
+              </mat-form-field>  
+          </div>
+          <div class="col-md-8" *ngIf="form2.value.estado == 'En proceso'">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Respuesta 'En proceso'</mat-label>
+                <textarea matInput rows="5" readonly placeholder=""  style="width: 100%;"  [formControl]="form2.controls['respuestaProceso']" required></textarea>
+            </mat-form-field>  
+          </div>
+          <div class="col-md-4" *ngIf="form2.value.estado == 'En proceso'">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Fecha 'En proceso'</mat-label>
+                <input matInput rows="5" readonly placeholder=""  style="width: 100%;"  [formControl]="form2.controls['fechaEnProceso']" value="{{form2.value.fechaEnProceso | date: 'dd/MM/yyyy HH:mm'}}" required>
+            </mat-form-field>  
+          </div>
+          <div class="col-md-8" *ngIf="form2.value.estado != 'En proceso' && form2.value.estado != 'Recepcionado'">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Respuesta '{{form2.value.estado}}'</mat-label>
+                <textarea matInput rows="5" readonly placeholder=""  style="width: 100%;"  [formControl]="form2.controls['respuestaFinalizado']" required></textarea>
+            </mat-form-field>  
+          </div>
+          <div class="col-md-4" *ngIf="form2.value.estado != 'En proceso' && form2.value.estado != 'Recepcionado'">
+            <mat-form-field class="mb-4" appearance="outline">
+              <mat-label>Fecha '{{form2.value.estado}}'</mat-label>
+                <input matInput rows="5" readonly placeholder=""  style="width: 100%;"  [formControl]="form2.controls['fechaCierre']" value="{{form2.value.fechaCierre | date: 'dd/MM/yyyy HH:mm'}}" required>
+            </mat-form-field>  
+          </div>
+        </div>
+       
+        
+      </form>
+      
+    </div>
+</mat-dialog-content>

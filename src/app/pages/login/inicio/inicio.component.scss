@@ -1,0 +1,86 @@
+@import '../../../../assets/sass/variable';
+
+:host {
+  // background: url(../../../../assets/content/login-bg.jpg) 50% 50% no-repeat;
+  background: url(../../../../assets/img/fondo.png) 50% 50% no-repeat;
+  background-size: cover;
+  display: table-cell;
+  height: 100%;
+  padding: ($module-rem * 2) 0;
+  vertical-align: middle;
+  width: 100%;
+
+  .ni-card {
+    margin: 0 auto;
+    max-width: 500px;
+    // background-color: rgba(255,255,255,.14) !important;
+    // background: rgba(255,255,255,.14) !important;
+    // .fondo{
+    //   background-color: rgba(255,255,255,.14) !important;
+    // }
+    /deep/ .card-wrap {
+      border: 0;
+      border-radius: 20px;
+      background-color: transparent !important;
+      // background-color: rgba(255,255,255,.0) !important;
+    }
+    /deep/ .card-content {
+      padding: 0% !important;
+    }
+    form {
+      width: 80%;
+      margin-left: 10%;
+      /deep/.mat-form-field-infix{
+        background-color: white;
+        border-radius: 5px;
+        padding-left: 3%;
+      }
+      /deep/ .mat-input-element {
+        padding-left: 2%;
+      }
+      /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline {
+        display: none;
+      }
+      button {
+        width: 100%;
+        border-radius: 5px;
+      }
+      .additional-info {
+        background: rgba(#000,.1);
+        margin: $module-rem * 2 (-($module-rem * 2)) (-($module-rem * 2));
+        padding: $module-rem $module-rem * 2;
+
+        .divider {
+          border-left: 1px solid rgba(#000,.2);
+          display: inline-block;
+          height: 18px;
+          margin: 0 10px;
+          vertical-align: bottom;
+        }
+      }
+    }
+  }
+  /deep/ .form-control {
+    color: black !important;
+}
+}
+.desaparecer{
+  width: 50%; float: left;border-right: 1px solid white;height: 240px;padding-top: 2%;padding-right: 5%;
+}
+.fondoContenedor{
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#161a1c+57,161a1c+57,161a1c+66,161a1c+93,161a1c+93,161a1c+100&0.7+46,0.3+100 */
+background: -moz-linear-gradient(top,  rgba(22,26,28,0.7) 46%, rgba(22,26,28,0.62) 57%, rgba(22,26,28,0.55) 66%, rgba(22,26,28,0.35) 93%, rgba(22,26,28,0.3) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3161a1c', endColorstr='#4d161a1c',GradientType=0 ); /* IE6-9 */
+
+}
+@media (min-width:200px) and (max-width:900px){
+  .desaparecer{
+    display: none;
+    width: 0%;
+    border:none;
+    height: 0%;
+  }
+
+}

@@ -1,0 +1,247 @@
+<ni-card [title]="" [align]="'center'">
+  <div class="fondoContenedor" style="padding-bottom: 3%;border-radius: 4%;">
+    <img class="mb-1" src="assets/img/rancagua_logo.png" width="20%" style="margin-top: 2%;">
+
+    <form [formGroup]="form2" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
+      <div class="row" style="margin-bottom: 5% !important;margin-top: 2%;margin: 0;">
+        <mat-form-field appearance="fill">
+          <mat-select style="text-align: left;width: 100%;" [formControl]="form2.controls['solicitud']" required>
+            <mat-label>Select an option</mat-label>
+            <mat-option class="col-md-6" *ngFor="let item of tipos" [value]="item._id">{{item.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-error *ngIf="form2.controls['solicitud'].hasError('required') && form2.controls['solicitud'].touched">
+          Debes seleccionar un tipo de solicitud.
+        </mat-error>
+        <mat-form-field appearance="fill">
+          <mat-select style="text-align: left;width: 100%;" [formControl]="form2.controls['solicitud']" required>
+            <mat-label>Select an option</mat-label>
+            <mat-option class="col-md-6" *ngFor="let a of area | json" [value]="">{{a.nombre}}
+            </mat-option>
+            <mat-option class="col-md-6">option</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-error *ngIf="form2.controls['solicitud'].hasError('required') && form2.controls['solicitud'].touched">
+          Debes seleccionar un tipo de solicitud.
+        </mat-error>
+      </div>
+      <div>{{area |json }} || {{tipos| json}}</div>
+      <!--<div ng-app="myApp" ng-controller="myCtrl">
+
+        <select ng-model="selectedName" ng-options="x for x in names" style="margin-left: 7px;">
+        </select>
+
+        </div>
+
+        <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+          $scope.names = ["Emil", "Tobias", "Linus"];
+        });
+        </script> -->
+
+
+
+      <!--Combo Box sin editar, falta moverlo a la izquierda y cambiar el estilo (probar con otro script)
+        <select ng-options="v.name for v in variants | filter:{type:3}" ng-change="calculateServicesSubTotal(item)"
+        ng-model="item.selectedVariant" ng-show="item.id==8" name="posterVariants"
+        ng-required="item.id==8 && item.quantity > 0" class="ng-pristine ng-valid ng-valid-required" style="margin: 50px;">
+            <option value="?" selected="selected"> Seleccione un área </option>
+            <option value="0">Emergencias</option>
+            <option value="1">RRHH</option>
+            <option value="2">Aseo y ornato</option>
+            <option value="3">Junaeb</option>
+            <option value="4">Otros</option>
+            <option value="5">salir</option>
+        </select>
+
+        <select ng-options="v.name for v in variants | filter:{type:3}" ng-change="calculateServicesSubTotal(item)"
+        ng-model="item.selectedVariant" ng-show="item.id==8" name="posterVariants1"
+        ng-required="item.id==8 && item.quantity > 0" class="ng-pristine ng-valid ng-valid-required" style="margin: 50px;">
+            <option value="?" selected="selected"> Seleccione el tipo de solcitud </option>
+            <option value="0">Entrega nylon</option>
+            <option value="1">Entrega cajas</option>
+            <option value="2">Gestion de medicamentos</option>
+            <option value="3">Recolección de basura</option>
+            <option value="4">Otros</option>
+            <option value="5">Salir</option>
+        </select> -->
+
+      <!--ComboBox simple-->
+
+      <!-- <select style="margin: 50px;" name="ComboBox0">
+        <option value="?" selected="selected">Seleccione el área</option>
+        <option value="0">Emergencias</option>
+        <option value="1">RRHH</option>
+        <option value="2">Aseo y ornato</option>
+        <option value="3">Junaeb</option>
+        <option value="4">Cobranza</option>
+        <option value="5">Otros</option>
+      </select>
+
+      <select style="margin: 50px;" name="ComboBox1">
+        <option value="?" selected="selected">Seleccione el tipo de solicitud</option>
+        <option value="0">Entrega nylon</option>
+        <option value="1">Entrega cajas</option>
+        <option value="2">Gestion medicamentos</option>
+        <option value="3">Recolección basura</option>
+        <option value="4">Cobro de gastos</option>
+        <option value="5">Otros</option>
+      </select>
+      -->
+
+
+      <div class="row">
+        <!-- SL-->
+        <!--<div class="col-md-6">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let seleccion of solicitud" [formControl]="form2.controls['categoria']" [value]="seleccion">
+                {{seleccion}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6" *ngIf="form2.value.categoria">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Tipo de solicitud</mat-label>
+            <mat-select >
+              <mat-option *ngFor="let seleccion2 of form2.value.categoria.tipo" [formControl]="form2.controls['solicitud']" [value]="seleccion2">
+                {{seleccion2}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> -->
+
+
+
+        <div class="col-md-4">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Rutttt</mat-label>
+            <input matInput placeholder="" required autocomplete="false" (keyup)="myFunction()"
+              [formControl]="form2.controls['rut']" value="{{rut}}" type="text"
+              [class.mensaje-error]="!verificar && rut.length >0">
+            <mat-error
+              *ngIf="(form2.controls['rut'].hasError('pattern') && form2.controls['rut'].touched) || (!verificar && form2.controls['rut'].touched)">
+              Debes ingresar un <strong>rut valido</strong>
+            </mat-error>
+            <!-- <mat-error *ngIf="!verificar && form2.controls['rut'].touched">
+              Debes ingresar un rut valido.
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="" [formControl]="form2.controls['nombre']" required>
+            <mat-error *ngIf="form2.controls['nombre'].hasError('required') && form2.controls['nombre'].touched">
+              Debes agregar un nombre.
+            </mat-error>
+            <mat-error *ngIf="form2.controls['nombre'].hasError('minlength') && form2.controls['nombre'].touched">
+              Debe contener <strong>al menos 3 caracteres</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput placeholder="" style="text-align: left;" [formControl]="form2.controls['telefono']"
+              pattern="\d*" type="text" maxlength="9" minlength="8" required>
+            <span matPrefix>+56</span>
+            <mat-error *ngIf="form2.controls['telefono'].hasError('required') && form2.controls['telefono'].touched">
+              Debes ingresar un teléfono.
+            </mat-error>
+            <mat-error *ngIf="form2.controls['telefono'].hasError('pattern') && form2.controls['telefono'].touched">
+              <strong>Solo números.</strong>
+            </mat-error>
+            <mat-error *ngIf="form2.controls['telefono'].hasError('maxlength') && form2.controls['telefono'].touched">
+              No puede superar los 11 caracteres.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input matInput placeholder="" [(ngModel)]="busqueda" [formControl]="form2.controls['direccion']"
+              (keydown.enter)="$event.preventDefault()" autocomplete="off" autocorrect="off" autocapitalize="off"
+              spellcheck="off" type="text" #search required>
+            <mat-error *ngIf="form2.controls['direccion'].hasError('required') && form2.controls['direccion'].touched">
+              Debes ingresa una dirección.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="" [formControl]="form2.controls['email']" required>
+            <mat-error *ngIf="form2.controls['email'].hasError('required') && form2.controls['email'].touched">
+              Debes ingresar un correo.
+            </mat-error>
+            <mat-error *ngIf="form2.controls['email'].errors?.email && form2.controls['email'].touched">
+              Debes ingresar un correo valido.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Requerimiento</mat-label>
+            <textarea matInput rows="5" placeholder="" style="margin: 0;padding: 0;border-radius: 5px;width: 100%;"
+              [formControl]="form2.controls['requerimiento']" required></textarea>
+            <mat-error
+              *ngIf="form2.controls['requerimiento'].hasError('required') && form2.controls['requerimiento'].touched">
+              Debes ingresar el requerimiento.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button style="background-color: #da5286;width: 60%;" [disabled]="!form2.valid || !verificar" type="submit"
+            ni-button [view]="'accent'">Enviar
+            <img src="assets/img/cargando_2.gif" width="20px" *ngIf="cargando2">
+          </button>
+        </div>
+
+        <!-- <div class="col-md-12">
+          <button  style="background-color: #0095DB;margin-top: 3%;" type="button" (click)="limpiar()" ni-button [view]="'accent'" >Limpiar
+          </button>
+        </div> -->
+      </div>
+      <!--<div class="row">
+      <div class="col-md-12" style="margin: 10px;">
+      <a href="https://www.facebook.com/brechadigitalconsultores/" style="margin: 10px;" target="_blank">
+        <button ni-button  type="button" class="avatar"  >
+          <i class="fa fa-facebook"></i>
+        </button>
+      </a>
+      <a href="https://www.twitter.com/brechadigital_" style="margin: 10px;" target="_blank">
+        <button ni-button  type="button" class="avatar"  >
+            <i class="fa fa-twitter"></i>
+        </button>
+      </a>
+      <a href="https://cl.linkedin.com/company/brecha-digital-consultores" style="margin: 10px;" target="_blank">
+        <button ni-button  type="button" class="avatar"  >
+          <i class="fa fa-linkedin"></i>
+        </button>
+      <a href="https://www.youtube.com/user/brechadigitalchile" style="margin: 10px;" target="_blank">
+        <button ni-button  type="button" class="avatar"  >
+            <i class="fa fa-youtube"></i>
+        </button>
+      </a>
+      </a>
+    </div>
+  </div> -->
+
+    </form>
+  </div>
+
+</ni-card>
+<footer style="padding-top: 2%;">
+  <div style="width: 100%;text-align: center;"><a style="cursor: pointer;color: white;" (click)="inicio()">Acceso
+      administrador</a></div>
+</footer>

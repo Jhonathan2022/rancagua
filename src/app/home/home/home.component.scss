@@ -1,0 +1,53 @@
+.div{
+    width: 32%;
+  }
+  .div2{
+    width: 17% !important;
+  }
+  .contenedor{
+    display: block;
+    margin: 0 0 1.375rem;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0px rgba(37, 45, 71, 0.25);
+    position: relative;
+    padding: 2%;
+  }
+  /deep/ .card-wrap{
+    height: 100%;
+  }
+  p{
+    font-weight: bold;
+  }
+  .tiempo{
+    // padding-top: 3%;
+    text-align: left;
+    color: white;
+  }
+  .mover{
+    padding-top: 5%;
+    padding-left: 5%;
+  }
+
+
+:host {
+  /deep/ .mat-select-value {
+    color: white !important;
+  }
+  /deep/ .mat-select-arrow {
+    color: white !important;
+  }
+  /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white !important;
+  }
+  /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+    color: white;
+  }
+}
+
+
+  @media(max-width: 600px) {
+    .tiempo{
+      text-align: center;
+      width: 100%;
+    }
+  }

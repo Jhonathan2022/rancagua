@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Home",
+    "groupTitle" : true
+  },
+  {
+    "title": "Home",
+    "routing": "/home/general",
+    "icon": {
+      "class": "fa fa-table",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    }
+  },
+  {
+    "title": "Mapa",
+    "routing": "/home/mapa",
+    "icon": {
+      "class": "fa fa-map",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    }
+  }
+]

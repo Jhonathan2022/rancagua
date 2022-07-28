@@ -1,0 +1,47 @@
+<ni-breadcrumb [menu]="breadcrumb" [style]="'custom2'" class="mb-4"></ni-breadcrumb>
+
+<ni-card title="Registro de Tipo de solicitud" customBgColor="#161a1ce6" color="white">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm" > 
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field class="mb-4"appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="" [formControl]="form.controls['nombre']" required>
+          <mat-error *ngIf="form.controls['nombre'].hasError('required') && form.controls['nombre'].touched">
+            Debes agregar un nombre.
+          </mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('minlength') && form.controls['nombre'].touched">
+            Debe contener al menos 3 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('maxlength') && form.controls['nombre'].touched">
+            No puede superar los 20 caracteres.
+          </mat-error>
+        </mat-form-field>  
+      </div> 
+      <div class="col-md-4">
+        <mat-form-field class="mb-0"appearance="outline">
+          <mat-label>Área</mat-label>
+          <mat-select placeholder="" [formControl]="form.controls['area']" required>
+            <mat-option *ngFor="let item of areas" [value]="item._id" >
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls['area'].hasError('required') && form.controls['area'].touched">
+            Debes seleccionar un área.
+          </mat-error>
+          </mat-form-field>
+      </div>
+    </div>
+    <button style="background-color: #E63338;" [disabled]="!form.valid" type="submit" ni-button [view]="'accent'" >Registrar
+      <img src="assets/img/cargando_2.gif" width="20px" *ngIf="cargando2">
+    </button>
+  </form>
+</ni-card >
+<ni-card customBgColor="#161a1ce6" color="white">
+  <ng2-smart-table style="background-color: transparent;border: 0;overflow-y: auto;"  [settings]="settings" [source]="source"
+    (editConfirm)="onUpdateConfirm($event)"
+    (deleteConfirm)="delete($event)"
+      >
+    </ng2-smart-table>
+</ni-card>
+<div #solici></div>

@@ -1,0 +1,64 @@
+@import '../../../../assets/sass/variable';
+
+:host {
+  background: $vertical-navbar-bg;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate3d(0,0,0);
+  transition:
+    left .2s $animation,
+    right .2s $animation;
+  width: $vertical-navbar-width;
+  will-change: left, right, width;
+  z-index: 9996;
+  @media #{$max991} {
+    left: -($vertical-navbar-width);
+  }
+  .rtl & {
+    left: auto;
+    right: 0;
+    @media #{$max991} {
+      left: auto;
+      right: -($vertical-navbar-width);
+    }
+  }
+
+  .vertical-navbar-wrap {
+    background: #455156; /* Old browsers */
+  // background: -moz-linear-gradient(-45deg,  #0c8fd3 0%, #1e4fbe 100%); /* FF3.6-15 */
+  // background: -webkit-linear-gradient(-45deg,  #0c8fd3 0%,#1e4fbe 100%); /* Chrome10-25,Safari5.1-6 */
+  // background: linear-gradient(135deg,  #0c8fd3 0%,#1e4fbe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c8fd3', endColorstr='#1e4fbe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+//   background: -moz-linear-gradient(top,  rgba(22,26,28,0.7) 46%, rgba(22,26,28,0.62) 57%, rgba(22,26,28,0.55) 66%, rgba(22,26,28,0.35) 93%, rgba(22,26,28,0.3) 100%); /* FF3.6-15 */
+// background: -webkit-linear-gradient(top,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+// background: linear-gradient(to bottom,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3161a1c', endColorstr='#4d161a1c',GradientType=0 ); /* IE6-9 */
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid white;
+    height: 100%;
+    width: $vertical-navbar-width;
+    @media #{$max991} {
+      position: relative;
+      z-index: 9999;
+    }
+  }
+  .sidebar-overlay {
+    background: rgba($vertical-navbar-bg,.2);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition:
+      .2s opacity 0s $animation,
+      0s visibility .2s $animation;
+    visibility: hidden;
+    width: 100%;
+    z-index: 9998;
+  }
+}

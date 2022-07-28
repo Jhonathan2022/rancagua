@@ -1,0 +1,8 @@
+<ni-breadcrumb [menu]="breadcrumb" [style]="'custom2'" class="mb-4"></ni-breadcrumb>
+<ni-card title="Usuarios" customBgColor="#161a1ce6" color="white">
+    <ng2-smart-table style="background-color: transparent;border: 0;overflow-y: auto;"  [settings]="settings" [source]="source"
+    (editConfirm)="onUpdateConfirm($event)"
+    (deleteConfirm)="onDeleteConfirm($event)"
+      >
+    </ng2-smart-table>
+</ni-card>

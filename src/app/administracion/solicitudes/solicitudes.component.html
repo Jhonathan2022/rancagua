@@ -1,0 +1,185 @@
+
+
+<div class="row">
+  <ni-card customBgColor="#43b535" align="center" class="col-xl-4 col-sm-12 col-12" color="white">
+    <div >
+      <h6>Entre 0 y 72 hrs (3 días)</h6>
+    </div>
+  </ni-card>
+  <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#ceb822" align="center" color="white">
+    <div >
+      <h6>Entre 72 hrs (3 días) y 120 hrs (5 días)</h6>
+    </div>
+  </ni-card>
+  <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#c30c0c" align="center" color="white">
+    <div >
+      <h6>Mayor a 120 hrs (5 días)</h6>
+    </div>
+  </ni-card>
+</div>
+<ni-card style="margin-top: 1%;" customBgColor="#161a1ce6" color="white">
+  <div class="row" style="margin: 0;">
+    <div class="col-xl-4 col-sm-8 col-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Filtrar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nº, nombre, requerimiento, etc...">
+      </mat-form-field>
+    </div>
+    <div class="col-xl-4 col-sm-4 col-12 row" style="width: 100%;">
+      <div class="col-12"><i class="fa fa-circle" style="color: #427be8;" aria-hidden="true"></i> Finalizado por requerimiento resuelto</div>
+      <div class="col-12"><i class="fa fa-circle" style="color: #93b0e8;" aria-hidden="true"></i> Finalizado por requerimiento sin solución</div>
+    </div>
+    <div class="col-xl-2 col-sm-4 col-11">
+      <button ni-button style="background: #ee2d24;" (click)="descargar()">Descargar</button>
+    </div>
+    <div class="col-xl-2 col-sm-4 col-1">
+      <button mat-fab style="float:right;background: #ee2d24;" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </div>
+ 
+  <div *ngIf="!mostrar" style="width: 100%;text-align: center;padding-top: 3%;">
+    <img src="assets/img/GestionSolicitudes.gif" width="10%">
+  </div>
+
+  <div class=" mat-elevation-z8">
+    <mat-table #table matSort #sorter1="matSort" [dataSource]="dataSource" style="background: transparent;">
+      <ng-container matColumnDef="tiempo" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tiempo </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="element.color" [ngClass]="(element.estado != 'Recepcionado' ) ? 'sizeText' : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Tiempo:</div>
+            <div class="col-8" style="padding: 0 !important;" > {{element.tiempo}} </div>
+          </div>
+          <span class="cell-desktop" > {{element.tiempo}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="numero" >
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Nº </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Nº:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.numero}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.numero}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"  style="text-transform: capitalize;" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;text-transform: capitalize">Nombre:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.nombre}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.nombre}} </span>
+        </mat-cell>
+      </ng-container>   
+      <ng-container matColumnDef="rut">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Rut </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Rut:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.rut}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.rut}} </span>
+        </mat-cell>
+      </ng-container>    
+      <ng-container matColumnDef="direccion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Dirección:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.direccion}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.direccion}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Teléfono:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.telefono}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.telefono}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="soli">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Solicitud </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Tipo Solicitud:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.soli}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.soli}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="requerimiento">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Requerimiento </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Requerimiento:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.requerimiento}} </div>
+          </div>
+          <span class="cell-desktop"> {{element.requerimiento}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Fecha:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.create_at | date: 'dd/MM/yyyy HH:mm'}} </div>
+          </div>
+          <span class="cell-desktop">{{element.create_at | date: 'dd/MM/yyyy HH:mm'}}  </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="font-weight: bold;"> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? (element.estado != 'Finalizado por requerimiento resuelto' ? 'red' : 'black') : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Estado:</div>
+            <div class="col-8" style="padding: 0 !important;font-weight: bold;"> {{element.estado}} </div>
+          </div>
+          <span class="cell-desktop" style="font-weight: bold;"> {{element.estado}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="usuario">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Encargado </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Encargado:</div>
+            <div class="col-8" style="padding: 0 !important;text-transform: capitalize;"> {{element.usuario}} </div>
+          </div>
+          <span class="cell-desktop" style="text-transform: capitalize;"> {{element.usuario}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let element" [style.background]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? element.color : ''" [style.color]="(element.estado != 'Recepcionado' && element.estado != 'En proceso') ? 'black' : ''"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Acciones:</div>
+            <div class="col-8 row" style="padding: 0 !important;"> 
+              <div>
+                <button (click)="ver(element)" title="Ver solicitud"><i class="fa fa-eye" style="color: green;"></i></button>
+              </div>
+              <div>
+                <button (click)="proceso(element)" title="Editar solicitud"><i class="fa fa-pencil" style="color: blue;"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="cell-desktop">
+            <button (click)="ver(element)" title="Ver solicitud"><i class="fa fa-eye" style="color: green;"></i></button>
+          </div>
+          <div class="cell-desktop" *ngIf="element.estado == 'Recepcionado' || element.estado == 'En proceso'">
+            <button (click)="proceso(element)" title="Editar solicitud"><i class="fa fa-pencil" style="color: blue;"></i></button>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #MatPaginator2="matPaginator" [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</ni-card>

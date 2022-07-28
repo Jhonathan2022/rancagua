@@ -1,0 +1,100 @@
+[
+  {
+    "title": "Home",
+    "groupTitle" : true
+  },
+  {
+    "title": "Home",
+    "routing": "/home",
+    "icon": {
+      "class": "fa fa-home",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    }
+  },  {
+    "title": "General",
+    "routing": "/home/general",
+    "icon": {
+      "class": "fa fa-table",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    }
+  },
+  {
+    "title": "Mapa",
+    "routing": "/home/mapa",
+    "icon": {
+      "class": "fa fa-map",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    }
+  },
+	{
+    "title": "Administración",
+    "groupTitle" : true
+  },
+  {
+    "title": "Área",
+    "icon": {
+      "class": "fa fa-sitemap",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+		},
+    "routing": "/administracion/area/crear"
+  },
+  {
+    "title": "Tipo de Solicitudes",
+    "icon": {
+      "class": "fa fa-assistive-listening-systems",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+		},
+    "routing": "/administracion/tipo-solicitud/crear"
+  },
+  {
+    "title": "Usuarios",
+    "icon": {
+      "class": "fa fa-users",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+		},
+    "sub": [
+			{
+        "icon": {
+          "class": "fa fa-user-plus",
+          "bg": "#c5c5c5",
+          "color": "rgba(0, 149, 219,.87)"
+        },
+        "title": "Registrar",
+        "routing": "/administracion/usuarios-area/crear"
+			},
+			{
+        "icon": {
+          "class": "fa fa-user-times",
+          "bg": "#c5c5c5",
+          "color": "rgba(0, 149, 219,.87)"
+        },
+        "title": "Editar",
+        "routing": "/administracion/usuarios-area/editar"
+			},
+      {
+        "icon": {
+          "class": "fa fa-user-plus",
+          "bg": "#c5c5c5",
+          "color": "rgba(0, 149, 219,.87)"
+        },
+        "title": "Registrar Administrador",
+        "routing": "/administracion/crearAdmin"
+			}
+		]
+  },
+	{
+    "title": "Gestionar Solicitudes",
+    "icon": {
+      "class": "fa fa-book",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    },
+    "routing": "/administracion/solicitudes"
+  }
+]

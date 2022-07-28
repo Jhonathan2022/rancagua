@@ -1,0 +1,205 @@
+<!-- <div class="row">
+  <ni-card customBgColor="#43b535" align="center" class="col-xl-4 col-sm-12 col-12" color="white">
+    <div >
+      <h6>Entre 0 y 72 hrs (3 días)</h6>
+    </div>
+  </ni-card>
+  <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#ceb822" align="center" color="white">
+    <div >
+      <h6>Entre 72 hrs (3 días) y 120 hrs (5 días)</h6>
+    </div>
+  </ni-card>
+  <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#c30c0c" align="center" color="white">
+    <div >
+      <h6>Mayor a 120 hrs (5 días)</h6>
+    </div>
+  </ni-card>
+</div> -->
+<div *ngIf="!mostrar" style="width: 100%;text-align: center;padding-top: 10%;">
+  <img src="assets/img/GestionSolicitudes.gif" width="10%">
+</div>
+<div class="row" *ngIf="mostrar">
+  <div class="col-xl-4 col-sm-12 col-12">
+    <ni-card align="center" style="height: 100%;" customBgColor="rgba(22,26,28,0.8)" color="white">
+      <circle-progress  name="A" [options]="options" [title]="infoGeneral.total" percent="100" outerStrokeWidth=15  innerStrokeWidth=0
+      [showBackground]="false" outerStrokeColor=#079ae0 [showUnits]="false" [showSubtitle]="false" titleColor=#fff
+      ></circle-progress>
+      <h4>Total de requerimientos</h4>
+    </ni-card>
+  </div>
+  <div class="col-xl-8 col-sm-12 col-12">
+    <h5 style="color: white;">Estado de los requerimientos ingresados</h5>
+    <div class="row">
+      <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+        <div class="row">
+          <div class="col-xl-4 col-sm-12 col-12">
+            <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.enviado" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+            outerStrokeColor=#3b8432 innerStrokeColor=#3b8432c7 titleColor=#fff unitsColor=#fff
+            ></circle-progress>
+          </div>       
+          <div class="col-xl-8 col-sm-12 col-12 mover">
+            <p>'Recepcionado'</p>
+            <span>{{(infoGeneral.enviado / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+          </div> 
+        </div> 
+      </ni-card>
+      <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+        <div class="row">
+          <div class="col-xl-4 col-sm-12 col-12">
+            <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.enproceso" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+            outerStrokeColor=#cee239c7 innerStrokeColor=#cee239c7 titleColor=#fff unitsColor=#fff
+            ></circle-progress>
+          </div>       
+          <div class="col-xl-8 col-sm-12 col-12 mover">
+            <p>'En proceso'</p>
+            <span>{{(infoGeneral.enproceso / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+          </div> 
+        </div> 
+      </ni-card>
+      <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+        <div class="row">
+          <div class="col-xl-4 col-sm-12 col-12">
+            <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.finalizadoResuelto" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+            outerStrokeColor=#427be8 innerStrokeColor=#427be8a6 titleColor=#fff unitsColor=#fff
+            ></circle-progress>
+          </div>       
+          <div class="col-xl-8 col-sm-12 col-12 mover">
+            <p>'Finalizado por requerimiento resuelto'</p>
+            <span>{{(infoGeneral.finalizadoResuelto / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+          </div> 
+        </div> 
+      </ni-card>
+      <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+        <div class="row">
+          <div class="col-xl-4 col-sm-12 col-12">
+            <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.finalizadoSinSolucion" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+            outerStrokeColor=#93b0e8 innerStrokeColor=#93b0e8a6 titleColor=#fff unitsColor=#fff
+            ></circle-progress>
+          </div>       
+          <div class="col-xl-8 col-sm-12 col-12 mover">
+            <p>'Finalizado por requerimiento sin solución'</p>
+            <span>{{(infoGeneral.finalizadoSinSolucion / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+          </div> 
+        </div> 
+      </ni-card>
+    </div>
+  </div>
+</div>
+<ni-card customBgColor="#161a1ce6" color="white">
+  <div class=" ">
+    <mat-table #table matSort #sorter1="matSort" [dataSource]="dataSource" style="background: transparent;">
+      <ng-container matColumnDef="area" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Área </mat-header-cell>
+        <mat-cell *matCellDef="let element" > 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Área:</div>
+            <div class="col-8" style="padding: 0 !important;text-transform: capitalize;" > {{element.area}} </div>
+          </div>
+          <span class="cell-desktop" style="text-transform: capitalize;"> {{element.area}} </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contador" >
+        <mat-header-cell *matHeaderCellDef  mat-sort-header> Total </mat-header-cell>
+        <mat-cell *matCellDef="let element" > 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-4" style="padding: 0 !important;font-weight: bold;">Total:</div>
+            <div class="col-8" style="padding: 0 !important;"> {{element.contador}} </div>
+          </div>
+          <div class="row cell-desktop">
+            <div class="col-12" style="text-align: center;"> <span>{{element.contador}}</span></div>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="recepcionado">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Recepcionados </mat-header-cell>
+        <!-- <mat-cell *matCellDef="let element" [style.background]="element.recepcionado.final > 0 ? '' : '#3b8432'"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">Recepcionados:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.recepcionado.total}} </div>
+          </div>
+          <div class="row cell-desktop" *ngIf="element.recepcionado.final > 0">
+            <div [ngClass]="element.recepcionado.final > 0 ? 'col-6' : 'col-12'" [style.padding-top]="element.recepcionado.final > 0 ? '70px' : '25px'" style="text-align: center;font-weight: bold;background: #3b8432;height: 100%;"><span>{{element.recepcionado.total}}</span></div>
+            <div  class="col-6" style="text-align: center;"> 
+              <circle-progress  name="A" [options]="optionsB" [percent]="(element.recepcionado.final/element.recepcionado.total)*100" innerStrokeWidth=3 outerStrokeWidth=4 showBackground=false
+              outerStrokeColor=#c30c0c innerStrokeColor=#c30c0ca6 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+              <div><span style="font-size:10px;width: 100%;">1 Requerimiento sobre 5 dias de retraso</span></div>
+            </div>
+          </div>
+          <div class="row cell-desktop" *ngIf="element.recepcionado.final <= 0">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.recepcionado.total}}</span></div>
+          </div>
+        </mat-cell> -->
+        <mat-cell *matCellDef="let element" style="background: #3b8432;"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">Recepcionados:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.recepcionado.final}} </div>
+          </div>
+          <div class="row cell-desktop">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.recepcionado.final}}</span></div>
+          </div>
+        </mat-cell>
+      </ng-container>   
+      <ng-container matColumnDef="proceso">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> En Proceso </mat-header-cell>
+        <!-- <mat-cell *matCellDef="let element" [style.background]="element.proceso.final > 0 ? '' : '#cee239'"> 
+          <div class="row mobile-label" style="margin: 0;background: #cee239;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">En Proceso:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.proceso.total}} </div>
+          </div>
+          <div class="row cell-desktop" *ngIf="element.proceso.final > 0">
+            <div [ngClass]="element.proceso.final > 0 ? 'col-6' : 'col-12'" [style.padding-top]="element.proceso.final > 0 ? '70px' : '25px'" style="text-align: center;font-weight: bold;background: #cee239;height: 100%;"><span>{{element.proceso.total}}</span></div>
+            <div  class="col-6" style="text-align: center;"> 
+              <circle-progress  name="A" [options]="optionsB" [percent]="(element.proceso.final/element.proceso.total)*100" innerStrokeWidth=3 outerStrokeWidth=4 showBackground=false
+              outerStrokeColor=#c30c0c innerStrokeColor=#c30c0ca6 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+              <div><span style="font-size:10px;width: 100%;">1 Requerimiento sobre 5 dias de retraso</span></div>
+            </div>
+          </div>
+          <div class="row cell-desktop" *ngIf="element.proceso.final <= 0">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.proceso.total}}</span></div>
+          </div>
+        </mat-cell> -->
+        <mat-cell *matCellDef="let element" style="background: #cee239;"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">En Proceso:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.proceso.final}} </div>
+          </div>
+          <div class="row cell-desktop">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.proceso.final}}</span></div>
+          </div>
+        </mat-cell>
+      </ng-container>   
+      <ng-container matColumnDef="finalizadoResuelto">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Finalizados por solución </mat-header-cell>
+        <mat-cell *matCellDef="let element" style="background: #427be8;"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">Finalizados por solución:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.finalizadoResuelto.total}} </div>
+          </div>
+          <div class="row cell-desktop">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.finalizadoResuelto.total}}</span></div>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="finalizadoSinSolucion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Finalizados sin solución </mat-header-cell>
+        <mat-cell *matCellDef="let element" style="background: #93b0e8"> 
+          <div class="row mobile-label" style="margin: 0;">
+            <div class="col-10" style="padding: 0 !important;font-weight: bold;">Finalizados sin solución:</div>
+            <div class="col-2" style="padding: 0 !important;"> {{element.finalizadoSinSolucion.total}} </div>
+          </div>
+          <div class="row cell-desktop">
+            <div class="col-12" style="text-align: center;font-weight: bold;"> <span>{{element.finalizadoSinSolucion.total}}</span></div>
+          </div>
+        </mat-cell>
+      </ng-container>
+    
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #MatPaginator2="matPaginator" [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>
+  </div>
+</ni-card>

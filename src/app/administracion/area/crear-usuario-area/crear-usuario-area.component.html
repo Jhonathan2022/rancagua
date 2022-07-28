@@ -1,0 +1,94 @@
+<ni-breadcrumb [menu]="breadcrumb" [style]="'custom2'" class="mb-4"></ni-breadcrumb>
+
+<ni-card title="Registro de Usuario por Área" customBgColor="#161a1ce6" color="white">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm"> 
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field class="mb-4"appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="" [formControl]="form.controls['nombre']" required>
+          <mat-error *ngIf="form.controls['nombre'].hasError('required') && form.controls['nombre'].touched">
+            Debes agregar un nombre.
+          </mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('minlength') && form.controls['nombre'].touched">
+            Debe contener al menos 3 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.controls['nombre'].hasError('maxlength') && form.controls['nombre'].touched">
+            No puede superar los 20 caracteres.
+          </mat-error>
+        </mat-form-field>  
+      </div> 
+      
+      <div class="col-md-4">
+          <mat-form-field class="mb-4"appearance="outline">
+            <mat-label>Apellido</mat-label>
+              <input matInput placeholder="" [formControl]="form.controls['apellido']" required>
+              <mat-error *ngIf="form.controls['apellido'].hasError('required') && form.controls['apellido'].touched">
+                Debes agregar un apellido.
+              </mat-error>
+              <mat-error *ngIf="form.controls['apellido'].hasError('minlength') && form.controls['apellido'].touched">
+                Debe contener al menos 3 caracteres.
+              </mat-error>
+              <mat-error *ngIf="form.controls['apellido'].hasError('maxlength') && form.controls['apellido'].touched">
+                  No puede superar los 20 caracteres.
+              </mat-error>
+            </mat-form-field>  
+      </div>
+
+      <div class="col-md-4">
+          <mat-form-field class="mb-4"appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="" [formControl]="form.controls['email']" type="email" required>
+            <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched">
+              Debes agregar un correo.
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched">
+              Debes agregar un correo valido.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field class="mb-4" appearance="outline">
+            <mat-label>Rut</mat-label>
+            <input matInput placeholder="" (keyup)="myFunction()" [formControl]="form.controls['rut']" value="{{rut}}" type="text" [class.mensaje-error]="!verificar && rut.length >0" required>
+            <mat-error *ngIf="!verificar && form.controls['rut'].touched">
+              Debes ingresar un rut valido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field class="mb-4"appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput placeholder="" style="text-align: left;" [formControl]="form.controls['telefono']" pattern="\d*" type="text" maxlength="9" minlength="9" >
+            <span matPrefix>+56</span>
+            <mat-error *ngIf="form.controls['telefono'].hasError('required') && form.controls['telefono'].touched">
+              Debes ingresar un teléfono.
+            </mat-error>
+            <mat-error *ngIf="form.controls['telefono'].errors?.telefono && form.controls['telefono'].touched">
+              Solo numeros.
+            </mat-error>
+            <mat-error *ngIf="form.controls['telefono'].hasError('maxlength') && form.controls['telefono'].touched">
+                No puede superar los 11 caracteres.
+              </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="col-md-4">
+            <mat-form-field class="mb-0"appearance="outline">
+              <mat-label>Área</mat-label>
+                <mat-select placeholder="" [formControl]="form.controls['area']" required>
+                    <mat-option *ngFor="let item of areas" [value]="item._id" >
+                      {{ item.nombre }}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+      </div> 
+
+      <button style="background-color: #E63338;width: 12%;" [disabled]="!form.valid || !verificar" type="submit" ni-button [view]="'accent'" >Guardar
+        <img src="assets/img/cargando_2.gif" width="30%" *ngIf="cargando">
+      </button>
+  </form>
+</ni-card>

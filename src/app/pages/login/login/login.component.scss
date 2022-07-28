@@ -1,0 +1,157 @@
+@import '../../../../assets/sass/variable';
+
+:host {
+  // background: url(../../../../assets/content/login-bg.jpg) 50% 50% no-repeat;
+  background: url(../../../../assets/img/SOLICITUDES_BACK_rancagua.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  display: table-cell;
+  height: 100%;
+  padding: ($module-rem * 2) 0;
+  vertical-align: middle;
+  width: 100%;
+
+  .ni-card {
+    margin: 0 auto;
+    max-width: 800px;
+    /deep/ .card-wrap {
+      border: 0;
+      border-radius: 30px;
+      background-color: transparent !important;
+      
+    }
+    /deep/ .card-content {
+      padding: 0% !important;
+    }
+    form{
+      width: 90%;
+      margin-left: 5%;
+      background: white;
+      padding: 2%;
+      border-radius: 20px;
+    }
+  
+  }
+}
+:host{
+  /deep/ .mat-radio-label-content {
+    white-space: break-spaces !important;
+    color: #543280;
+  }
+  /deep/ .mat-radio-outer-circle {
+    border-color: #543280;
+  }
+  /deep/ .mat-radio-group .mat-radio-button{
+    margin: 0 !important;
+    padding: 1%;
+  }
+  /deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #543280;
+    color:#543280;
+  }
+  /deep/ .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #543280;
+  }
+  /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #543280;
+  }
+  /deep/ .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #543280!important;
+  }
+  /deep/ .mat-input-element {
+    color: #543280 !important;
+  }
+  /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+    display: block;
+    color: #543280 !important;
+  }
+  /deep/ .mat-form-field-label {
+    color: #543280 !important;
+  }
+  /deep/ .mat-form-field-flex .mat-form-field-prefix, body .mat-form-field-flex .mat-form-field-suffix {
+    color: #543280 !important;
+    padding-top: 2% !important;
+  }
+}
+
+.desaparecer{
+  width: 50%; float: left;border-right: 1px solid white;height: 240px;padding-top: 2%;padding-right: 5%;
+}
+
+.invalid{
+  // border-radius: 10px;
+  border: #543280 solid 2px !important;
+}
+.mensaje-error{
+  color: #543280 !important;
+  // font-size: 12px;
+  // margin-left: 2%;
+  // font-weight: bold;
+  // margin-top: -3%;
+}
+
+
+.fondoContenedor{
+  background: rgba(255,255,255,0.97);
+}
+
+//.fondoContenedor{
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#161a1c+57,161a1c+57,161a1c+66,161a1c+93,161a1c+93,161a1c+100&0.7+46,0.3+100 */
+/*background: -moz-linear-gradient(top,  rgba(22,26,28,0.7) 46%, rgba(22,26,28,0.62) 57%, rgba(22,26,28,0.55) 66%, rgba(22,26,28,0.35) 93%, rgba(22,26,28,0.3) 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(top,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom,  rgba(22,26,28,0.7) 46%,rgba(22,26,28,0.62) 57%,rgba(22,26,28,0.55) 66%,rgba(22,26,28,0.35) 93%,rgba(22,26,28,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3161a1c', endColorstr='#4d161a1c',GradientType=0 ); /* IE6-9 */
+
+//}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mobile-label {
+  display: none;
+}
+.mat-column-numero {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 5% !important;
+  // width: 5px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+@media(max-width: 600px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+    color:#543280;
+  }
+  /deep/ .mat-select-value{
+    max-width: fit-content !important;
+  }
+}

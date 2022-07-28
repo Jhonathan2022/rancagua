@@ -1,0 +1,67 @@
+<div class="row">
+  <ni-card class="col-md-7 col-xs-12" customBgColor="rgba(22,26,28,0.7)">
+    <div style="position: absolute;z-index: 999;width: 100%;">
+      <button mat-fab style="margin-right: 7%;margin-top: 2%;float:right;background: #ee2d24;" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-5" style="text-align:center">
+        <img src="assets/img/camion.svg" width="7%" alt=""><br>
+        *Chofer <span style="font-weight: bold;">sin</span> reparto en curso
+      </div>
+      <div class="col-md-5"  style="text-align:center">
+        <img src="assets/img/truck-red.png" width="7%" alt=""><br>
+        *Chofer <span style="font-weight: bold;color: red;">con</span> reparto en curso
+      </div>
+    </div> -->
+    <agm-map (mapReady)="onMapReady($event)" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [usePanning]="true" [streetViewControl]="false" [mapTypeControl]="false" [zoomControl]="true">
+      <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [markerDraggable]="false"
+       (markerClick)="info(marker)"  [iconUrl]="marker.estado == 'Recepcionado' ? recepcionado : (marker.estado == 'En proceso' ? proceso : (marker.estado == 'Finalizado por requerimiento resuelto' ? finalizadoSolucion: finalizadoSinSolucion))"></agm-marker>
+    </agm-map>
+  </ni-card>
+
+  <div class="col-md-5 col-xs-12">
+    <ni-card  customBgColor="rgba(22,26,28,0.7)" color="white">
+      <h6>Requerimientos ingresados: {{markers.length}} </h6>
+     
+    </ni-card>
+    <ni-card *ngIf="data" customBgColor="rgba(22,26,28,0.7)" color="white">
+      <div >
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">N°:</div>
+          <div class="col-9" style="font-size: 13px;font-weight: bold;">{{data.numero}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Nombre:</div>
+          <div class="col-9" style="text-transform: capitalize;font-size: 13px;">{{data.nombre}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Email:</div>
+          <div class="col-9" style="font-size: 13px;">{{data.email}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Teléfono:</div>
+          <div class="col-9" style="font-size: 13px;">{{data.telefono}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Dirección:</div>
+          <div class="col-9" style="font-size: 13px;">{{data.direccion}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Requerimiento:</div>
+          <div class="col-9" style="font-size: 13px;">{{data.requerimiento}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Estado:</div>
+          <div class="col-9" [style.color]="data.estado == 'Recepcionado' ? '#3b8432' : (data.estado == 'En proceso' ? '#cee239' : (data.estado == 'Finalizado por requerimiento resuelto' ? '#427be8' : '#93b0e8'))" style="font-weight: bold;">{{data.estado}}</div>
+        </div>
+        <div class="row" style="margin-bottom: 1%;">
+          <div class="col-3" style="font-size: 13px;">Tiempo:</div>
+          <div class="col-9" style="font-size: 13px;font-weight: bold;" [style.color]="data.color">{{data.tiempo}}</div>
+        </div>
+      </div>
+    </ni-card>
+  </div>
+ 
+</div>

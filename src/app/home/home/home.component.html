@@ -1,0 +1,152 @@
+
+<div class="row" #selector>
+  <div class="col-xl-4 col-sm-12 col-12">
+    <mat-form-field class="mb-0">
+        <mat-select placeholder="Filtrar por Área" [(ngModel)]="areaSelect" style="color: white;">
+            <mat-option *ngFor="let item of areas" [value]="item._id" >
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+  </div>
+ <div class="col-xl-2 col-sm-4 col-4" style="padding-top: 1%;">
+  <button style="background-color: #E63338;"  type="submit" (click)="filtrar()" [disabled]="!areaSelect || !usuarios" ni-button [view]="'accent'" >Filtrar
+    <img src="assets/img/cargando_2.gif" width="30%" *ngIf="cargando">
+  </button>
+ </div>
+ <div class="col-xl-6 col-sm-8 col-8">
+  <button mat-fab style="float:right;background: #ee2d24;" (click)="areaSelect = 'Todo';refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</div>
+</div>
+
+<div *ngIf="!mostrar" style="width: 100%;text-align: center;padding-top: 10%;">
+  <img src="assets/img/GestionSolicitudes.gif" width="10%">
+</div>
+
+<div *ngIf="mostrar">
+  <div class="row">
+    <div class="col-xl-4 col-sm-12 col-12">
+      <ni-card align="center" style="height: 95%;" customBgColor="rgba(22,26,28,0.8)" color="white">
+        <circle-progress  name="A" [options]="options" [title]="infoGeneral.total" percent="100" outerStrokeWidth=15  innerStrokeWidth=0
+        [showBackground]="false" outerStrokeColor=#079ae0 [showUnits]="false" [showSubtitle]="false" titleColor=#fff
+        ></circle-progress>
+        <h4>Total de requerimientos</h4>
+      </ni-card>
+    </div>
+    <div class="col-xl-8 col-sm-12 col-12">
+      <h5 style="color: white;">Estado de los requerimientos ingresados</h5>
+      <div class="row">
+        <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+          <div class="row">
+            <div class="col-xl-4 col-sm-12 col-12">
+              <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.enviado" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+              outerStrokeColor=#3b8432 innerStrokeColor=#3b8432c7 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+            </div>       
+            <div class="col-xl-8 col-sm-12 col-12 mover">
+              <p>'Recepcionado'</p>
+              <span>{{(infoGeneral.enviado / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+            </div> 
+          </div> 
+        </ni-card>
+        <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+          <div class="row">
+            <div class="col-xl-4 col-sm-12 col-12">
+              <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.enproceso" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+              outerStrokeColor=#cee239c7 innerStrokeColor=#cee239c7 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+            </div>       
+            <div class="col-xl-8 col-sm-12 col-12 mover">
+              <p>'En proceso'</p>
+              <span>{{(infoGeneral.enproceso / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+            </div> 
+          </div> 
+        </ni-card>
+        <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+          <div class="row">
+            <div class="col-xl-4 col-sm-12 col-12">
+              <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.finalizadoResuelto" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+              outerStrokeColor=#427be8 innerStrokeColor=#427be8a6 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+            </div>       
+            <div class="col-xl-8 col-sm-12 col-12 mover">
+              <p>'Finalizado por requerimiento resuelto'</p>
+              <span>{{(infoGeneral.finalizadoResuelto / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+            </div> 
+          </div> 
+        </ni-card>
+        <ni-card class="col-6" customBgColor="rgba(22,26,28,0.7)" color="white">
+          <div class="row">
+            <div class="col-xl-4 col-sm-12 col-12">
+              <circle-progress  name="A" [options]="optionsA" [percent]="infoGeneral.finalizadoSinSolucion" innerStrokeWidth=3 outerStrokeWidth=5 showBackground=false
+              outerStrokeColor=#93b0e8 innerStrokeColor=#93b0e8a6 titleColor=#fff unitsColor=#fff
+              ></circle-progress>
+            </div>       
+            <div class="col-xl-8 col-sm-12 col-12 mover">
+              <p>'Finalizado por requerimiento sin solución'</p>
+              <span>{{(infoGeneral.finalizadoSinSolucion / 100 * infoGeneral.total).toFixed(0)}} requerimientos</span>
+            </div> 
+          </div> 
+        </ni-card>
+      </div>
+    </div>
+  </div>
+  <h5 style="color: white;">Nº de requerimientos ingresados según el tiempo de demora</h5>
+  <div class="row">
+    <ni-card customBgColor="#43b535"  class="col-xl-4 col-sm-12 col-12">
+      <div class="row" style="text-align: center;">
+        <div class="col-xl-4 col-sm-12 col-12">
+          <circle-progress  name="A" [options]="optionsB" [title]="tiempo.inicio" percent="100" outerStrokeWidth=5  innerStrokeWidth=0
+          [showBackground]="false" outerStrokeColor=#fff [showUnits]="false" [showSubtitle]="false" titleColor=#fff
+          ></circle-progress>
+        </div>       
+        <div class="col-xl-8 col-sm-12 col-12 tiempo"  >
+          <h6>Requerimientos<br>Entre 0 y 72 hrs (3 días)</h6>
+        </div> 
+      </div> 
+    </ni-card>
+    <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#ceb822" align="center">
+      <div class="row" style="text-align: center;">
+        <div class="col-xl-4 col-sm-12 col-12">
+          <circle-progress  name="A" [options]="optionsB" [title]="tiempo.intermedio" percent="100" outerStrokeWidth=5  innerStrokeWidth=0
+          [showBackground]="false" outerStrokeColor=#fff [showUnits]="false" [showSubtitle]="false" titleColor=#fff 
+          ></circle-progress>
+        </div>       
+        <div class="col-xl-8 col-sm-12 col-12 tiempo"  >
+          <h6 style="margin-top: 0%;">Requerimientos<br>Entre 72 hrs (3 días) y 120 hrs (5 días)</h6>
+        </div> 
+      </div> 
+    </ni-card>
+    <ni-card class="col-xl-4 col-sm-12 col-12" customBgColor="#c30c0c" align="center">
+      <div class="row" style="text-align: center;">
+        <div class="col-xl-4 col-sm-12 col-12">
+          <circle-progress  name="A" [options]="optionsB" [title]="tiempo.final" percent="100" outerStrokeWidth=5  innerStrokeWidth=0
+          [showBackground]="false" outerStrokeColor=#fff [showUnits]="false" [showSubtitle]="false" titleColor=#fff
+          ></circle-progress>
+        </div>       
+        <div class="col-xl-8 col-sm-12 col-12 tiempo">
+          <h6>Requerimientos<br>Mayor a 120 hrs (5 días)</h6>
+        </div> 
+      </div> 
+    </ni-card>
+  </div>
+  
+  <ni-card customBgColor="rgba(22,26,28,0.7)">
+    <div class="row grap" style="margin: 0;" >
+      <canvas baseChart height="350px"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [colors]="colorusuarios"
+            [chartType]="barChartType">
+          </canvas>
+    </div>
+  </ni-card>
+
+</div>
+
+<div *ngIf="mostrarArea"></div>

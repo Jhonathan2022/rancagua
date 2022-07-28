@@ -1,0 +1,62 @@
+<ni-card [title]="" [align]="'center'">
+  <!-- <div class="desaparecer">
+    <img  class="mb-1" src="assets/img/logo-transparente.png" width="200">
+  </div> -->
+  <div class="fondoContenedor" style="padding-bottom: 3%;border-radius: 2%;">
+    <img  class="mb-1" src="assets/img/logo.png" width="30%" style="margin-top: 2%;">
+    <!-- <i style="color: white;font-size: 60px;margin-top: -10%;margin-bottom: 2%;" class="fa fa-users"></i> -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!cambiar && !recuperar" >
+      <ni-alert [color]="'danger'" *ngIf="status == 'error'">Usuario y/o contraseña incorrecta</ni-alert>
+      <ni-alert [color]="'success'" *ngIf="status == 'success'"> Usuario correcto</ni-alert>
+      <mat-form-field style="margin-bottom: 4%;">
+        <input matInput placeholder="&nbsp;&nbsp;Email" [formControl]="form.controls['email']" type="email">        
+        <mat-error *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched">
+          Debes ingresar un correo.
+        </mat-error>
+        <mat-error *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched">
+          Debes ingresar un correo valido.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="margin-bottom: 4%;">
+        <input matInput placeholder="&nbsp;&nbsp;Contraseña" [formControl]="form.controls['password']" type="password">
+        <mat-error *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched">
+          Debes ingresar tu contraseña.
+        </mat-error>
+      </mat-form-field>
+      <button ni-button [view]="'accent'" style="background-color: #E63338;color:white" [disabled]="!form.valid" type="submit" [block]="true">Iniciar Sesión</button>
+      <p style="color:white;margin-top:3%;" (click)="recPass()">Recuperar Contraseña</p>
+    </form>
+    <form [formGroup]="form3" (ngSubmit)="recuperarPass()" *ngIf="recuperar">
+      <mat-form-field style="margin-bottom: 4%;">
+        <input matInput placeholder="&nbsp;&nbsp;Email" [formControl]="form3.controls['email']" type="email">        
+        <mat-error *ngIf="form3.controls['email'].hasError('required') && form3.controls['email'].touched">
+          Debes ingresar un correo.
+        </mat-error>
+        <mat-error *ngIf="form3.controls['email'].errors?.email && form3.controls['email'].touched">
+          Debes ingresar un correo valido.
+        </mat-error>
+      </mat-form-field>
+      <button ni-button [view]="'accent'" style="background-color: #E63338;" [disabled]="!form3.valid" type="submit" [block]="true">Enviar</button>
+      <p style="color:white;margin-top:3%;" (click)="recPass()">Volver</p>
+    </form>
+    <form [formGroup]="form2" (ngSubmit)="cambiarPass()" *ngIf="cambiar && !recuperar">
+      <mat-form-field style="margin-bottom: 4%;">
+        <input matInput placeholder="&nbsp;&nbsp;Contraseña actual" [formControl]="form2.controls['password']" type="password">
+        <mat-error *ngIf="form2.controls['password'].hasError('required') && form2.controls['password'].touched">
+          Debes ingresar tu contraseña.
+        </mat-error> 
+      </mat-form-field>
+      <mat-form-field style="margin-bottom: 4%;">
+        <input matInput placeholder="&nbsp;&nbsp;Nueva Contraseña" [formControl]="form2.controls['newpass']" type="password">
+        <mat-error *ngIf="form2.controls['newpass'].hasError('required') && form2.controls['newpass'].touched">
+          Debes ingresar una contraseña.
+        </mat-error>
+        <!-- <mat-error *ngIf="form2.controls['newpass'].hasError('pattern') && form2.controls['newpass'].touched">
+          Debe contener minimo 8 caracteres, 1 Mayuscula, 1 Minuscula, números y caracter especial
+        </mat-error> -->
+      </mat-form-field>
+      <button ni-button [view]="'accent'" style="background-color: #E63338;" [disabled]="!form2.valid" type="submit" [block]="true">Actualizar Contraseña</button>
+    </form>
+  </div>
+
+</ni-card>

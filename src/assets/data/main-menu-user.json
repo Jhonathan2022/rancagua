@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Home",
+    "groupTitle" : true
+  },
+	{
+    "title": "Gestionar Solicitudes",
+    "icon": {
+      "class": "fa fa-book",
+      "bg": "#c5c5c5",
+      "color": "rgba(230, 51, 56,.87)"
+    },
+    "routing": "/administracion/solicitudes"
+  }
+]

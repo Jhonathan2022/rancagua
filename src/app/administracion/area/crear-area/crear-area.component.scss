@@ -1,0 +1,155 @@
+.ng2-smart-pagination{
+    &.pagination{
+        .page-link{
+            line-height: 1rem;
+        }
+    }
+}
+
+.edit{
+  margin-top: 2%;
+    font-weight: 500;
+    font-size: 25px;
+      color: #36454E !important;
+}
+.colortexto{
+    color: #36454E !important;
+}
+.bordes{
+  border-color: #6D6E70 !important;
+  border-radius: 10px;
+}
+.boton{
+  background-color: #D93832;
+  color:white;
+}
+.separador{
+  border: 1px;
+  border-bottom: 0.55px solid#36454E;
+}
+:host /deep/ span.ng2-smart-page-link.page-link {
+    color: white;
+    background-color: #D93832;
+    border-color: #D93832;
+}
+:host /deep/ ng2-smart-table-title > a { color: #fff; }
+
+:host{
+  /deep/ .mat-radio-label-content {
+    white-space: break-spaces !important;
+    color: white;
+  }
+  /deep/ .mat-radio-outer-circle {
+    border-color: white;
+  }
+  /deep/ .mat-select-arrow {
+    color: white !important;
+  }
+  /deep/ .mat-radio-group .mat-radio-button{
+    margin: 0 !important;
+    padding: 1%;
+  }
+  /deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #D93832;
+  }
+  /deep/ .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #D93832;
+  }
+  /deep/ .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+  }
+  /deep/ .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: white !important;
+  }
+  /deep/ .mat-input-element {
+    color: white !important;
+  }
+  /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+    display: block;
+    color: white !important;
+  }
+  /deep/ .mat-form-field-label {
+    color: white !important;
+  }
+  /deep/ .form-control {
+    color: black !important;
+}
+}
+:host{
+  /deep/ {
+    .ng2-smart-action-delete-delete{
+      color: #dc3545 !important;
+    }
+    .ng2-smart-action-edit-cancel{
+      color: #dc3545 !important;
+    }
+    .ng2-smart-action-edit-save{
+      color: #28a745 !important;
+    }
+    .ng2-smart-action-edit-edit{
+      color: #007bff !important;
+    }
+  }
+}
+
+:host{
+  /deep/ {
+
+    table{
+      margin-bottom: 3%;
+
+      tr {
+        td{
+          border-bottom: 0.55px solid#36454E;
+        }
+      }
+    }
+  }
+}
+
+
+:host{
+  /deep/ {
+    .page-item.disabled .page-link {
+      color: darkgray !important;
+    }
+    .page-item.active .page-link {
+      background: #D93832 !important;
+      color: white !important;
+      border: 1px solid #D93832 !important;
+    }
+    .page-item {
+      margin: 3px;
+    }
+    .page-link {
+      color: black !important;
+      padding: 8px;
+      padding-left: 14px;
+      padding-right: 14px;
+      border-radius: 4px !important;
+    }
+    .page-link:hover {
+      background-color: #cecece !important;
+      color: white !important;
+      border: 1px solid gray;
+    }
+    .ng2-smart-pagination .page-link-next,
+    .ng2-smart-pagination .page-link-prev {
+      font-size: 14px !important;
+    }
+    .ng2-smart-page-item a:hover {
+      text-decoration: none !important;
+    
+    }
+  }
+}
+
+// /deep/ .mat-select-value {
+//   color: black !important;
+// }
+// /deep/ .mat-select-arrow {
+//   color: black !important;
+// }
+// /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline {
+//   background-color: black !important;
+// }

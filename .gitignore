@@ -1,0 +1,6 @@
+/node_modules
+/backend/node_modules
+/backend/backend_admin/node_modules
+/backend/uploads/
+/dist/
+/dist_/
